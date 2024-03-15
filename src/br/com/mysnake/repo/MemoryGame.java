@@ -13,13 +13,18 @@ public class MemoryGame {
 	private boolean end;
 	private int lastDirection, currentDirection;
 	private Comando comandoEmProcessamento;
-	private int qtdeMordidas;
+	private int ratosPegos;
 	private int snakeX, snakeY;
 	private List<Comando> filaComandos;
+	private int ratoX;
+	private int ratoY;
+	private boolean ratoVivo;
+	private List<Coordenada> historicoCoordenadasRato;
 	
 	private MemoryGame() {
 	
 		filaComandos = new ArrayList<>();
+		historicoCoordenadasRato = new ArrayList<>();
 		
 		snakeX = -1;
 		snakeY = -1;
@@ -69,13 +74,13 @@ public class MemoryGame {
 		return lastDirection != currentDirection;
 	}
 	
-	public synchronized void incrementMordida() {
-		qtdeMordidas++;
+	public synchronized void incrementRatosPegos() {
+		ratosPegos++;
 		notify();
 	}
 	
-	public synchronized int getQtdeMordidas() {
-		return qtdeMordidas;
+	public synchronized int getRatosPegos () {
+		return ratosPegos;
 	}
 	
 	public synchronized int getSnakeX() {
@@ -139,7 +144,67 @@ public class MemoryGame {
 		this.comandoEmProcessamento = comandoEmProcessamento;
 		notify();
 	}
+
+	public synchronized int getRatoX() {
+		return ratoX;
+	}
+
+	public synchronized void setRatoX(int ratoX) {
+		this.ratoX = ratoX;
+		notify();
+	}
+
+	public synchronized int getRatoY() {
+		return ratoY;
+	}
+
+	public synchronized void setRatoY(int ratoY) {
+		this.ratoY = ratoY;
+		notify();
+	}
+
+	public synchronized boolean isRatoVivo() {
+		return ratoVivo;
+	}
+
+	public synchronized void setRatoVivo(boolean ratoVivo) {
+		this.ratoVivo = ratoVivo;
+		notify();
+	}
 	
+	public synchronized List<Coordenada> getHistoricoCoordenadasRato() {
+		return historicoCoordenadasRato;
+	}
 	
+	public synchronized void criarCoordenadaRato(int x, int y) {
+		ratoX = x;
+		ratoY = y;
+		historicoCoordenadasRato.add(new Coordenada(x, y));
+		notify();
+	}
+	
+	public synchronized Coordenada getCoordenadaRatoAtiva() {
+		
+		final Optional<Coordenada> candidato = historicoCoordenadasRato
+				.stream()
+				.filter(c -> c.isAtiva())
+				.findFirst();
+		
+		if( candidato.isPresent() ) {
+			return candidato.get();
+		}
+		
+		return null;
+		
+	}
+	
+	public synchronized boolean snakeAlreadLunch() {
+		
+		if( snakeX == ratoX && snakeY == ratoY ) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 }

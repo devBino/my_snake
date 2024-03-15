@@ -5,22 +5,22 @@ import java.util.concurrent.TimeUnit;
 import br.com.mysnake.repo.Comando;
 import br.com.mysnake.repo.MemoryGame;
 
-public class MonitorComando {
+public class ComandoMonitor {
 
 	private Thread processo;
 	
-	public MonitorComando() {
-		processo = new Thread(new TaskMonitor());
+	public ComandoMonitor() {
+		processo = new Thread(new TaskComandMonitor());
 		processo.start();
 	}
 	
 }
 
-class TaskMonitor implements Runnable {
+class TaskComandMonitor implements Runnable {
 	
 	MemoryGame memory;
 	
-	public TaskMonitor() {
+	public TaskComandMonitor() {
 		memory = MemoryGame.getInstance();
 	}
 	

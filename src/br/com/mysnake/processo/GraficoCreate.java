@@ -2,27 +2,28 @@ package br.com.mysnake.processo;
 
 import java.util.concurrent.TimeUnit;
 
-import br.com.mysnake.app.Game;
+import br.com.mysnake.app.GameView;
+import br.com.mysnake.repo.GameConstants;
 import br.com.mysnake.repo.Matriz;
 import br.com.mysnake.repo.MemoryGame;
 
-public class DesenharGrafico {
+public class GraficoCreate {
 	
 	public Thread processo;
 	
-	public DesenharGrafico(final Game game) {
-		processo = new Thread(new TaskDesenho(game));
+	public GraficoCreate(final GameView game) {
+		processo = new Thread(new TaskGraficoCreate(game));
 		processo.start();
 	}
 	
 }
 
-class TaskDesenho implements Runnable {
+class TaskGraficoCreate implements Runnable {
 
-	Game game;
+	GameView game;
 	MemoryGame memory;
 	
-	public TaskDesenho(final Game game) {
+	public TaskGraficoCreate(final GameView game) {
 		this.game = game;
 		memory = MemoryGame.getInstance();
 	}
@@ -37,7 +38,9 @@ class TaskDesenho implements Runnable {
 		while( !memory.isEnd() ) {
 			try {
 				
-				final StringBuilder fundo = Matriz.getMatrizInicial(40, 70);
+				final StringBuilder fundo = Matriz.getMatrizGrafico(
+						GameConstants.DX, GameConstants.DY);
+
 				game.getTxtFundo().setText(fundo.toString());
 				
 				TimeUnit.MILLISECONDS.sleep(500);

@@ -1,19 +1,23 @@
 package br.com.mysnake.app;
 
 import br.com.mysnake.processo.ComandoProcessor;
-import br.com.mysnake.processo.DesenharGrafico;
-import br.com.mysnake.processo.MonitorComando;
+import br.com.mysnake.processo.GraficoCreate;
+import br.com.mysnake.processo.ComandoMonitor;
+import br.com.mysnake.processo.RatoCreate;
+import br.com.mysnake.processo.SnakeLunchMonitor;
 
 public class Starter {
 	
 	public static void main(String[] args) {
 		
-		Game game = new Game();
+		GameView game = new GameView();
 		game.setVisible(true);
 		
-		DesenharGrafico d = new DesenharGrafico(game);
-		MonitorComando m = new MonitorComando();
-		ComandoProcessor c = new ComandoProcessor();
+		new GraficoCreate(game);
+		new ComandoMonitor();
+		new ComandoProcessor();
+		new RatoCreate();
+		new SnakeLunchMonitor();
 		
 	}
 	

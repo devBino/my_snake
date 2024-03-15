@@ -15,8 +15,9 @@ import br.com.mysnake.repo.MemoryGame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.awt.Font;
 
-public class Game extends JFrame {
+public class GameView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -29,7 +30,7 @@ public class Game extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Game frame = new Game();
+					GameView frame = new GameView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +42,7 @@ public class Game extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Game() {
+	public GameView() {
 		
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -64,12 +65,13 @@ public class Game extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		txtFundo = new JTextArea();
+		txtFundo = new JTextArea(200,200);
+		txtFundo.setFont(new Font("Monospaced", Font.PLAIN, 14));
+		txtFundo.setWrapStyleWord(true);
+		txtFundo.setLineWrap(true);
 		txtFundo.setEnabled(false);
 		txtFundo.setBorder(new LineBorder(Color.WHITE));
 		txtFundo.setBackground(Color.BLACK);
-		txtFundo.setWrapStyleWord(true);
-		txtFundo.setLineWrap(true);
 		txtFundo.setForeground(Color.WHITE);
 		contentPane.add(txtFundo);
 		
