@@ -39,7 +39,7 @@ class TaskComandMonitor implements Runnable {
 					memory.setComandoEmProcessamento(cmd);
 				}
 				
-				TimeUnit.MILLISECONDS.sleep(250);
+				TimeUnit.MILLISECONDS.sleep(200);
 				wait();
 				
 			}catch(final Exception exception) {}

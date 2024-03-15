@@ -36,7 +36,7 @@ class TaskRatoCreate implements Runnable {
 		
 		while( memory.getCoordenadaRatoAtiva() != null ) {
 			try {
-				TimeUnit.MICROSECONDS.sleep(250);
+				TimeUnit.MICROSECONDS.sleep(200);
 				wait();
 			}catch(final Exception exception) {}
 		}

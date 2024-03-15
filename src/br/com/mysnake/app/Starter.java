@@ -2,6 +2,7 @@ package br.com.mysnake.app;
 
 import br.com.mysnake.processo.ComandoProcessor;
 import br.com.mysnake.processo.GraficoCreate;
+import br.com.mysnake.processo.ImpactoMonitor;
 import br.com.mysnake.processo.ComandoMonitor;
 import br.com.mysnake.processo.RatoCreate;
 import br.com.mysnake.processo.SnakeLunchMonitor;
@@ -18,6 +19,7 @@ public class Starter {
 		new ComandoProcessor();
 		new RatoCreate();
 		new SnakeLunchMonitor();
+		new ImpactoMonitor();
 		
 	}
 	

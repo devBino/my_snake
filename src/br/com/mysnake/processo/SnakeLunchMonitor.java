@@ -35,7 +35,7 @@ class TaskSnakeLunchMonitor implements Runnable {
 		
 		while( !memory.snakeAlreadLunch() ) {
 			try {
-				TimeUnit.MILLISECONDS.sleep(250);
+				TimeUnit.MILLISECONDS.sleep(200);
 				wait();
 			}catch(final Exception exception) {}
 		}

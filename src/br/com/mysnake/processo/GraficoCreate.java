@@ -43,12 +43,14 @@ class TaskGraficoCreate implements Runnable {
 
 				game.getTxtFundo().setText(fundo.toString());
 				
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(300);
 				
 				wait();
 				
 			}catch(Exception e) {}
 		}
+		
+		game.getTxtFundo().setText("GAME OVER...");
 		
 	}
 	

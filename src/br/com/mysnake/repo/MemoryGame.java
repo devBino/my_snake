@@ -47,7 +47,7 @@ public class MemoryGame {
 		return end;
 	}
 	
-	public synchronized void setEnd() {
+	public synchronized void end() {
 		end = true;
 		notifyAll();
 	}
@@ -205,6 +205,22 @@ public class MemoryGame {
 		}
 		
 		return false;
+	}
+	
+	public synchronized boolean bateu() {
+		
+		//monitora impacto cima baixo
+		if( snakeX < 0 || snakeX > GameConstants.DX ) {
+			return true;
+		}
+		
+		//monitora impacto esquerda direita
+		if( snakeY < 0 || snakeY > GameConstants.DY ) {
+			return true;
+		}
+		
+		return false;
+		
 	}
 	
 }
